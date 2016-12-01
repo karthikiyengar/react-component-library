@@ -1,0 +1,45 @@
+{
+  "extends": "sagui",
+  "rules": {
+    "semi": [
+      "error",
+      "always"
+    ],
+    "indent": [
+      2,
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "max-len": [
+      0
+    ],
+    "generator-star-spacing": [
+      0
+    ],
+    "comma-dangle": [
+      0
+    ],
+    "space-before-function-paren": [
+      2,
+      {
+        "anonymous": "always",
+        "named": "never"
+      }
+    ],
+    "no-use-before-define": [
+      2,
+      "nofunc"
+    ],
+    "no-underscore-dangle": [
+      0
+    ],
+    "new-cap": [
+      0
+    ],
+    "no-param-reassign": [
+      0
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+@value color-danger from './../../config.css';
+
+.container {
+  flex: 1;
+  :global {
+    .Select-control {
+      border: 1px solid black;
+    }
+  }
+}
