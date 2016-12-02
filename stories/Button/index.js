@@ -18,7 +18,7 @@ class Button extends React.Component {
   render() {
     const { onClick, type, children, disabled, block, icon } = this.props;
     return (
-      <div styleName={cx(type || 'container', { disabled, block })} onClick={!disabled && onClick ? onClick() : null}>
+      <div styleName={cx(type || 'container', { disabled, block })} onClick={(e) => !disabled && onClick ? onClick(e) : null}>
         { icon && <i className={icon} styleName='icon' />}
         <span styleName='label'>
           { children || 'Done' }

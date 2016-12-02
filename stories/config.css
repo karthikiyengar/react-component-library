@@ -1,11 +1,17 @@
 @value color-primary: #0078E7;
 @value color-secondary: #42B8DD;
+@value color-default: #e6e6e6;
 @value color-light: white;
 @value color-success: #1CB841;
 @value color-danger: #CA3C3C;
 @value color-gray: #eee;
-@value control-height: 30px;
+@value control-height: 35px;
+@value control-width: 200px;
 @value control-padding: 10px;
+@value control-border-radius: 2px;
+@value control-border-color: color-gray;
+@value control-border-focus-color: color-primary;
+@value control-border-error-color: color-danger;
 
 .container {
   display: flex;
@@ -17,25 +23,5 @@
 }
 
 .info {
-  margin-top: 5px;
-}
-
-.border {
-  border: 1px solid color-gray;
-  border-radius: 3px;
-}
-
-.border-focus {
-  &:focus {
-    border: 1px solid color-primary;
-  }
-}
-
-.border-error {
-  border-color: color-danger;
-}
-
-.error {
-  color: color-danger;
   margin-top: 5px;
 }

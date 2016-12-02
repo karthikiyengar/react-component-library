@@ -1,11 +1,11 @@
-@value color-primary, color-secondary, color-light, color-success, color-danger from '../../config.css';
+@value color-primary, color-secondary, color-light, color-success, color-danger, color-default, control-height from '../../config.css';
 
 .container {
 	align-items: center;
-	background: #e6e6e6;
+	background: color-default;
 	border-radius: 2px;
 	display: inline-flex;
-	height: 35px;
+	height: control-height;
 	justify-content: center;
 	padding: 0 20px;
 	user-select: none;

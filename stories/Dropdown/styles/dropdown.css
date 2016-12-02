@@ -1,10 +1,40 @@
-@value color-danger from './../../config.css';
+@value color-danger, color-default, control-height, control-border-color, control-border-focus-color, control-border-error-color, control-border-radius, control-width from './../../config.css';
 
 .container {
   flex: 1;
+
   :global {
+    .Select {
+      width: control-width;
+    }
+
     .Select-control {
-      border: 1px solid black;
+      border: 1px solid control-border-color;
+      border-radius: control-border-radius;
+      height: control-height;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+
+    .Select-option.is-focused {
+      background: color-default;
+    }
+
+    .Select-menu-outer {
+      border-bottom-left-radius: control-border-radius;
+      border-bottom-right-radius: control-border-radius;
+      border-color: control-border-color;
+    }
+
+    .Select-placeholder {
+      font-weight: 100;
+    }
+
+    .is-focused:not(.is-open) > .Select-control {
+      border-color: control-border-focus-color;
+      box-shadow: none;
     }
   }
 }

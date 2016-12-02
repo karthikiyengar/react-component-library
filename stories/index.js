@@ -4,16 +4,55 @@ import Button from './Button/index.js';
 import Dropdown from './Dropdown/index.js';
 import './globals.css';
 import './icons.css';
+import Chance from 'chance';
+import { createStore, combineReducers } from 'redux';
+import { reducer as form } from 'redux-form';
+import { Provider } from 'react-redux';
+import { Field, reduxForm } from 'redux-form';
 
-const options = [{
-  label: 'Option',
-  value: 'option'
-}];
 
+const store = createStore(combineReducers({ form }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const gen = new Chance();
+const options = Array(5).fill(null).map(item => {
+  return {
+    label: gen.name(),
+    value: gen.guid()
+  };
+});
+console.log(options);
 storiesOf('Dropdown', module)
-  .add('default', () => (
-    <Dropdown options={options} />
-  ));
+  .addDecorator((getStory) => (
+    <Provider store={store}>
+      { getStory() }
+    </Provider>
+  ))
+  .add('default', () => {
+    const DropdownWrapper = React.createClass({
+      getInitialState() {
+        return {
+          value: options[0].value
+        };
+      },
+      render() {
+        return <Dropdown options={options} onChange={(args) => {
+          this.props.onChange(args);
+          this.setState({
+            value: args ? args.value : null
+          });
+        }} value={this.state.value} />;
+      }
+    });
+    return <DropdownWrapper onChange={action('changed')} />;
+  })
+  .add('redux-form-dropdown', () => {
+    let DropdownWrapper = React.createClass({
+      render() {
+        return <Field component={Dropdown} name='fullName' options={options} onChange={action('changed')} />;
+      }
+    });
+    DropdownWrapper = reduxForm({ form: 'dropdown' })(DropdownWrapper);
+    return <DropdownWrapper />;
+  });
 
 storiesOf('Button', module)
   .add('default', () => (
