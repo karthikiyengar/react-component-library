@@ -3,21 +3,27 @@ import { storiesOf, action } from '@kadira/storybook';
 import Button from './Button/index.js';
 import Dropdown from './Dropdown/index.js';
 import TextField from './TextField/index.js';
-import './globals.css';
-import './icons.css';
+import ImageList from './ImageList/index.js';
 import Chance from 'chance';
 import { createStore, combineReducers } from 'redux';
 import { Field, reduxForm, reducer as form } from 'redux-form';
 import { Provider } from 'react-redux';
+import './globals.css';
+import './icons.css';
 
 const store = createStore(combineReducers({ form }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
-const gen = new Chance();
-const options = Array(5).fill(null).map(item => {
-  return {
-    label: gen.name(),
-    value: gen.guid()
-  };
-});
+const chance = new Chance();
+
+const images = Array(5).fill(null).map(item => ({
+  id: chance.guid(),
+  label: chance.city(),
+  image: `https://unsplash.it/200?random&${chance.word()}`
+}));
+
+const options = Array(5).fill(null).map(item => ({
+  label: chance.name(),
+  value: chance.guid()
+}));
 
 const DefaultTextField = React.createClass({
   getInitialState() {
@@ -58,6 +64,20 @@ let TextFieldWrapper = React.createClass({
     return <Field component={TextField} name='fullName' options={options} onChange={action('changed')} label='Full Name' info='This field is used to enter your full name' placeholder='Enter Name' />;
   }
 });
+
+storiesOf('ImageList', module)
+  .add('default', () => {
+    return <ImageList data={images} onItemClick={action('clicked')} />;
+  })
+  .add('bold on active disabled', () => {
+    return <ImageList data={images} onItemClick={action('clicked')} boldOnActive={false} />;
+  })
+  .add('vertical', () => {
+    return <ImageList data={images} onItemClick={action('clicked')} vertical />;
+  })
+  .add('custom image height', () => {
+    return <ImageList data={images} onItemClick={action('clicked')} imageHeight={40} />;
+  });
 
 storiesOf('TextField', module)
   .addDecorator((getStory) => (

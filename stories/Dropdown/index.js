@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
 import Select from 'react-select';
 import '!style!css!react-select/dist/react-select.css';
-import styles from './styles/dropdown.css';
+import styles from './styles';
 import config from './../config.css';
 
 @CSSModules({...config, ...styles})

@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import CSSModules from 'react-css-modules';
-import styles from './styles/textfield.css';
+import styles from './styles';
 import config from './../config.css';
 
-@CSSModules({...styles, ...config})
+@CSSModules({...config, ...styles})
 export default class TextField extends React.Component {
   static propTypes = {
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),

@@ -1,0 +1,46 @@
+@value color-primary from './../../config.css';
+@value image-height: 25px;
+
+.container {
+  display: inline-flex;
+}
+
+.container-vertical {
+  composes: container;
+  flex-direction: column;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  margin-right: 15px;
+  padding: 5px;
+
+  &:hover {
+    color: color-primary;
+    cursor: pointer;
+  }
+}
+
+.image {
+  border-radius: 50%;
+  height: image-height;
+  margin-right: 10px;
+  user-select: none;
+  width: image-height;
+}
+
+.item:last-child {
+  margin-right: 0;
+}
+
+.label {
+  composes: value from './../../config.css';
+  user-select: none;
+}
+
+.label-active {
+  color: color-primary;
+  composes: label;
+  font-weight: 300;
+}

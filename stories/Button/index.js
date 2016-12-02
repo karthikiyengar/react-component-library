@@ -1,5 +1,5 @@
 import React, { PropTypes} from 'react';
-import styles from './styles/button.css';
+import styles from './styles';
 import CSSModules from 'react-css-modules';
 import cx from 'classnames';
 

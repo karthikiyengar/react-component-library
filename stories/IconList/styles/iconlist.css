@@ -1,0 +1,50 @@
+@value color-grayer, color-primary, color-secondary, color-light from '../../config.css';
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item {
+  &:hover {
+    cursor: pointer;
+  }
+  align-items: center;
+  background: color-light;
+  /*composes: label-em from 'styles/typography';*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5px;
+  min-width: 130px;
+  padding: 10px;
+}
+
+.item-active {
+  background: color-secondary;
+  color: color-primary;
+  composes: item;
+  font-weight: bold;
+}
+
+.item:hover {
+  color: color-primary;
+  transform-style: preserve-3d;
+  transition: 0.6s;
+}
+
+.icon {
+  /*composes: icon-large from 'styles/icons';*/
+  margin-bottom: 10px;
+}
+
+.item {
+  border: 1px solid color-grayer;
+}
+
+.label {
+  text-align: center;
+}
