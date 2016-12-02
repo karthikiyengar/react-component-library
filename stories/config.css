@@ -5,13 +5,12 @@
 @value color-success: #1CB841;
 @value color-danger: #CA3C3C;
 @value color-gray: #eee;
-@value control-height: 35px;
-@value control-width: 200px;
-@value control-padding: 10px;
-@value control-border-radius: 2px;
-@value control-border-color: color-gray;
-@value control-border-focus-color: color-primary;
-@value control-border-error-color: color-danger;
+@value height: 35px;
+@value padding: 10px;
+@value border-radius: 4px;
+@value border-color: color-gray;
+@value border-color-focus: color-primary;
+@value border-color-error: color-danger;
 
 .container {
   display: flex;
@@ -19,9 +18,23 @@
 }
 
 .label {
-  margin-bottom: 10px;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+}
+
+.value {
+  font-size: 14px;
+  font-weight: 100;
 }
 
 .info {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.error {
+  color: color-danger;
+  font-size: 12px;
   margin-top: 5px;
 }

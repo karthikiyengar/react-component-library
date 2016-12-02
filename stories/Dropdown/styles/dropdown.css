@@ -1,31 +1,50 @@
-@value color-danger, color-default, control-height, control-border-color, control-border-focus-color, control-border-error-color, control-border-radius, control-width from './../../config.css';
+@value color-default, height, border-color, border-color-focus, border-color-error, border-radius, padding from './../../config.css';
 
-.container {
-  flex: 1;
+.select {
+  composes: value from './../../config.css';
 
   :global {
-    .Select {
-      width: control-width;
+    .Select-error {
+      .Select-control {
+        border: 1px solid border-color-error;
+      }
+
+      .Select-menu-outer {
+        border-color: border-color-error;
+      }
+    }
+
+    .Select.is-open {
+      .Select-control {
+        border-radius: 0;
+      }
     }
 
     .Select-control {
-      border: 1px solid control-border-color;
-      border-radius: control-border-radius;
-      height: control-height;
+      border: 1px solid border-color;
+      border-radius: border-radius;
+      height: height;
 
       &:hover {
         box-shadow: none;
       }
     }
 
-    .Select-option.is-focused {
+    .Select-placeholder,
+    .Select-value {
+      padding-left: padding;
+      padding-right: padding;
+    }
+
+    .Select-option.is-focused,
+    .Select-option.is-selected {
       background: color-default;
     }
 
     .Select-menu-outer {
-      border-bottom-left-radius: control-border-radius;
-      border-bottom-right-radius: control-border-radius;
-      border-color: control-border-color;
+      border-bottom-left-radius: border-radius;
+      border-bottom-right-radius: border-radius;
+      border-color: border-color;
     }
 
     .Select-placeholder {
@@ -33,7 +52,7 @@
     }
 
     .is-focused:not(.is-open) > .Select-control {
-      border-color: control-border-focus-color;
+      border-color: border-color-focus;
       box-shadow: none;
     }
   }
