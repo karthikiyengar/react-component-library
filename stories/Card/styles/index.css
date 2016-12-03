@@ -1,0 +1,7 @@
+@value color-light from './../../config.css';
+
+.container {
+  background: color-light;
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.05);
+  padding: 25px;
+}
