@@ -3,6 +3,7 @@
 
 .container {
   display: inline-flex;
+  flex-wrap: wrap;
 }
 
 .container-vertical {
@@ -34,13 +35,13 @@
   margin-right: 0;
 }
 
+.item-active {
+  color: color-primary;
+  composes: item;
+  font-weight: bold;
+}
+
 .label {
   composes: value from './../../config.css';
   user-select: none;
-}
-
-.label-active {
-  color: color-primary;
-  composes: label;
-  font-weight: 300;
 }

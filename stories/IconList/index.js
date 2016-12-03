@@ -1,48 +1,40 @@
-// @flow
 import React, { PropTypes } from 'react';
-import styles from './styles/iconlist.css';
+import styles from './styles';
 import cssModules from 'react-css-modules';
-
-type State = { active: ?string };
 
 @cssModules(styles)
 class IconList extends React.Component {
-  state: State
-  constructor (props) {
-    super(props);
-    this.state = {
-      active: props.active
-    };
-  }
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string,
       id: PropTypes.string,
       icon: PropTypes.string
     })).isRequired,
-    onIconClick: PropTypes.func
+    onItemClick: PropTypes.func,
+    disableActiveStyle: PropTypes.bool
+  }
+  static defaultProps = {
+    data: [],
+    disableActiveStyle: false
   }
 
-  handleIconClick (item) {
-    this.setState({
-      active: item.id
-    });
-    if (typeof this.props.onIconClick === 'function') {
-      this.props.onIconClick(item);
+  handleIconClick(item) {
+    if (typeof this.props.onItemClick === 'function') {
+      this.props.onItemClick(item);
     }
   }
 
-  render () {
-    const { data } = this.props;
-    const { active } = this.state;
+  render() {
+    const { data, active, disableActiveStyle, vertical, iconSize } = this.props;
+    const inlineStyle = iconSize ? { fontSize: iconSize } : {};
     return (
-      <div styleName='container'>
+      <div styleName={vertical ? 'container-vertical' : 'container'}>
         {
           data.map((item) => {
             const isActive = item.id === active;
             return (
-              <div styleName={isActive ? 'item-active' : 'item'} key={item.id} onClick={() => this.handleIconClick(item)}>
-                <i className={item.icon} styleName='icon' />
+              <div styleName={isActive && !disableActiveStyle ? 'item-active' : 'item'} key={item.id} onClick={() => this.handleIconClick(item)}>
+                <i className={item.icon} styleName='icon' style={inlineStyle} />
                 <span styleName='label'>{item.label}</span>
               </div>
             );

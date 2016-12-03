@@ -1,0 +1,66 @@
+@value color-primary from './../../config.css';
+@value icon-size: 25px;
+
+.container {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.container-vertical {
+  display: flex;
+  flex-direction: column;
+
+  .item {
+    align-items: center;
+    flex-basis: auto;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 5px;
+  }
+
+  .icon {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  flex-basis: 0;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  margin: 5px;
+  padding: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.item:hover {
+  color: color-primary;
+  transform-style: preserve-3d;
+  transition: 0.6s;
+}
+
+.item-active {
+  color: color-primary;
+  composes: item;
+  font-weight: bold;
+}
+
+.icon {
+  font-size: icon-size;
+  margin-bottom: 10px;
+}
+
+.item {
+  border: 1px solid color-grayer;
+}
+
+.label {
+  composes: value from './../../config.css';
+  text-align: center;
+}

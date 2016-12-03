@@ -13,12 +13,13 @@ class Button extends React.Component {
     children: PropTypes.node,
     disabled: PropTypes.bool,
     block: PropTypes.bool,
-    icon: PropTypes.string
+    icon: PropTypes.string,
+    className: PropTypes.string
   }
   render() {
-    const { onClick, type, children, disabled, block, icon } = this.props;
+    const { onClick, type, children, disabled, block, icon, className } = this.props;
     return (
-      <div styleName={cx(type || 'container', { disabled, block })} onClick={(e) => !disabled && onClick ? onClick(e) : null}>
+      <div styleName={cx(type || 'container', { disabled, block })} onClick={(e) => !disabled && onClick ? onClick(e) : null} className={className}>
         { icon && <i className={icon} styleName='icon' />}
         <span styleName='label'>
           { children || 'Done' }

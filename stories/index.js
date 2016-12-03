@@ -1,9 +1,10 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import Button from './Button/index.js';
-import Dropdown from './Dropdown/index.js';
-import TextField from './TextField/index.js';
-import ImageList from './ImageList/index.js';
+import Button from './Button';
+import Dropdown from './Dropdown';
+import TextField from './TextField';
+import ImageList from './ImageList';
+import IconList from './IconList';
 import Chance from 'chance';
 import { createStore, combineReducers } from 'redux';
 import { Field, reduxForm, reducer as form } from 'redux-form';
@@ -23,6 +24,12 @@ const images = Array(5).fill(null).map(item => ({
 const options = Array(5).fill(null).map(item => ({
   label: chance.name(),
   value: chance.guid()
+}));
+
+const icons = Array(5).fill(null).map(item => ({
+  id: chance.guid(),
+  label: chance.sentence({words: 2}),
+  icon: chance.pickone(['icon-printer', 'icon-download', 'icon-search', 'icon-check', 'icon-coin'])
 }));
 
 const DefaultTextField = React.createClass({
@@ -65,19 +72,28 @@ let TextFieldWrapper = React.createClass({
   }
 });
 
+storiesOf('IconList', module)
+  .add('default', () => <IconList data={icons} onItemClick={action('clicked')} />)
+  .add('with active', () => <IconList data={icons} onItemClick={action('clicked')} active={icons[1].id} />)
+  .add('with active and active style disabled', () => <IconList data={icons} onItemClick={action('clicked')} active={icons[1].id} disableActiveStyle />)
+  .add('vertical', () => <IconList data={icons} onItemClick={action('clicked')} vertical />);
+
 storiesOf('ImageList', module)
-  .add('default', () => {
-    return <ImageList data={images} onItemClick={action('clicked')} />;
-  })
-  .add('bold on active disabled', () => {
-    return <ImageList data={images} onItemClick={action('clicked')} boldOnActive={false} />;
-  })
-  .add('vertical', () => {
-    return <ImageList data={images} onItemClick={action('clicked')} vertical />;
-  })
-  .add('custom image height', () => {
-    return <ImageList data={images} onItemClick={action('clicked')} imageHeight={40} />;
-  });
+  .add('default', () => <ImageList data={images} onItemClick={action('clicked')} />)
+  .add('with active', () => <ImageList data={images} onItemClick={action('clicked')} active={images[4].id} />)
+  .add('with active and active style disabled', () => <ImageList data={images} onItemClick={action('clicked')} active={images[2].id} disableActiveStyle />)
+  .add('vertical', () => <ImageList data={images} onItemClick={action('clicked')} vertical />)
+  .add('custom image height', () => <ImageList data={images} onItemClick={action('clicked')} imageHeight={40} />);
+
+storiesOf('Button', module)
+  .add('default', () => <Button onClick={action('clicked')}>Hello Button</Button>)
+  .add('disabled', () => <Button onClick={action('clicked')} disabled>Hello Button</Button>)
+  .add('block', () => <Button onClick={action('clicked')} block>Hello Button</Button>)
+  .add('with icon', () => <Button onClick={action('clicked')} icon='icon-library'>Hello Button</Button>)
+  .add('primary', () => <Button type='primary' onClick={action('clicked')}>Hello Button</Button>)
+  .add('secondary', () => <Button type='secondary' onClick={action('clicked')}>Hello Button</Button>)
+  .add('success', () => <Button type='success' onClick={action('clicked')}>Hello Button</Button>)
+  .add('danger', () => <Button type='danger' onClick={action('clicked')}>Hello Button</Button>);
 
 storiesOf('TextField', module)
   .addDecorator((getStory) => (
@@ -132,33 +148,3 @@ storiesOf('Dropdown', module)
     DropdownWrapper = reduxForm({ form: 'dropdown', validate })(DropdownWrapper);
     return <DropdownWrapper />;
   });
-
-storiesOf('Button', module)
-  .add('default', () => (
-    <Button onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('default-disabled', () => (
-    <Button onClick={action('clicked')} disabled>Hello Button</Button>
-  ))
-  .add('default-block', () => (
-    <div>
-      <Button onClick={action('clicked')} block>Hello Button</Button>
-    </div>
-  ))
-  .add('default-with-icon', () => (
-    <div>
-      <Button onClick={action('clicked')} icon='icon-library'>Hello Button</Button>
-    </div>
-  ))
-  .add('primary', () => (
-    <Button type='primary' onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('secondary', () => (
-    <Button type='secondary' onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('success', () => (
-    <Button type='success' onClick={action('clicked')}>Hello Button</Button>
-  ))
-  .add('danger', () => (
-    <Button type='danger' onClick={action('clicked')}>Hello Button</Button>
-  ));
