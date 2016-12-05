@@ -38,7 +38,7 @@ class Dropdown extends React.Component {
       <div styleName='container' className={className} >
         { label && <span styleName='label'>{label}</span> }
         <div styleName='select'>
-          <Select clearable={false} searchable={false} {...this.props} className={errorMessage ? 'Select-error' : null} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} />
+          <Select valueKey='id' clearable={false} searchable={false} {...this.props} className={errorMessage ? 'Select-error' : null} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} />
         </div>
         { !errorMessage && info && <span styleName='info'>{info}</span> }
         { errorMessage && <span styleName='error'>{errorMessage}</span> }
