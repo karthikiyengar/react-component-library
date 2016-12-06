@@ -17,7 +17,7 @@ class Dropdown extends React.Component {
   handleChange(args) {
     const { onChange, input } = this.props;
     if (onChange) onChange(args);
-    if (input) input.onChange(args ? args[this.props.valueKey || 'value'] : null);
+    if (input) input.onChange(args ? args[this.props.valueKey || 'id'] : null);
   }
   handleFocus(e) {
     const { onFocus, input } = this.props;
