@@ -5,7 +5,7 @@ import cssModules from 'react-css-modules';
 @cssModules(styles)
 class Card extends React.Component {
   static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)]).isRequired,
+    children: PropTypes.node.isRequired,
     padding: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     block: PropTypes.bool
   }
