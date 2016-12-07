@@ -14,17 +14,18 @@ class Button extends React.Component {
     disabled: PropTypes.bool,
     block: PropTypes.bool,
     icon: PropTypes.string,
-    className: PropTypes.string
+    className: PropTypes.string,
+    submit: PropTypes.bool
   }
   render() {
-    const { onClick, type, children, disabled, block, icon, className } = this.props;
+    const { onClick, type, children, disabled, block, icon, submit, className } = this.props;
     return (
-      <div styleName={cx(type || 'container', { disabled, block })} onClick={(e) => !disabled && onClick ? onClick(e) : null} className={className}>
+      <button type={submit ? 'submit' : 'button'} styleName={cx(type || 'container', { disabled, block })} onClick={(e) => !disabled && onClick ? onClick(e) : null} className={className}>
         { icon && <i className={icon} styleName='icon' />}
         <span styleName='label'>
           { children || 'Done' }
         </span>
-      </div>
+      </button>
     );
   }
 }
