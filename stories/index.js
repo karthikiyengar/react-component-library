@@ -6,10 +6,12 @@ import Card from './Card';
 import TextField from './TextField';
 import ImageList from './ImageList';
 import IconList from './IconList';
+import Datepicker from './Datepicker';
 import Chance from 'chance';
 import { createStore, combineReducers } from 'redux';
 import { Field, reduxForm, reducer as form } from 'redux-form';
 import { Provider } from 'react-redux';
+import moment from 'moment';
 import './globals.css';
 import './icons.css';
 
@@ -72,6 +74,13 @@ let TextFieldWrapper = React.createClass({
     return <Field component={TextField} name='fullName' options={options} onChange={action('changed')} label='Full Name' info='This field is used to enter your full name' placeholder='Enter Name' />;
   }
 });
+
+storiesOf('Datepicker', module)
+  .add('default', () => <Datepicker onChange={action('changed')} />)
+  .add('with selected', () => <Datepicker value={moment()} onChange={action('changed')} />)
+  .add('with redux form selected', () => <Datepicker input={{value: moment(), onChange: f => f, onFocus: f => f, onBlur: f => f}} />)
+  .add('with redux form error', () => <Datepicker input={{value: moment(), onChange: f => f, onFocus: f => f, onBlur: f => f}} meta={{error: 'Date is mandatory', invalid: true, touched: true}} />)
+  .add('with error', () => <Datepicker error='Please pick a date' />);
 
 storiesOf('Card', module)
   .add('default', () => <Card><span>Lorem ipsum dolor sit amet</span></Card>)

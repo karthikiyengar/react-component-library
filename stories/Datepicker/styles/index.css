@@ -1,0 +1,46 @@
+@value height, border-color, border-color-focus, border-color-error, border-radius, color-default padding from './../../config.css';
+
+:global {
+  .react-datepicker__current-month {
+    font-weight: inherit;
+  }
+
+  .react-datepicker__header {
+    background: color-default;
+  }
+
+  .react-datepicker__triangle {
+    border-bottom-color: color-default !important;
+  }
+}
+
+.container {
+  :global {
+    .react-datepicker__input-container {
+      width: 100%;
+    }
+  }
+}
+
+.datepicker {
+  border: 1px solid border-color;
+  border-radius: border-radius;
+  composes: value from './../../config';
+  height: height;
+  padding: 0 10px;
+  width: 100%;
+
+  &:focus {
+    border-color: border-color-focus;
+    outline: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.datepicker-error {
+  border-color: border-color-error;
+  composes: datepicker;
+}
