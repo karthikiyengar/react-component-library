@@ -4,9 +4,11 @@ import Button from './Button';
 import Dropdown from './Dropdown';
 import Card from './Card';
 import TextField from './TextField';
+import TextArea from './TextArea';
 import ImageList from './ImageList';
 import IconList from './IconList';
 import Datepicker from './Datepicker';
+import Dropzone from './Dropzone';
 import Chance from 'chance';
 import { createStore, combineReducers } from 'redux';
 import { Field, reduxForm, reducer as form } from 'redux-form';
@@ -26,7 +28,7 @@ const images = Array(5).fill(null).map(item => ({
 
 const options = Array(5).fill(null).map(item => ({
   label: chance.name(),
-  value: chance.guid()
+  id: chance.guid()
 }));
 
 const icons = Array(5).fill(null).map(item => ({
@@ -74,6 +76,12 @@ let TextFieldWrapper = React.createClass({
     return <Field component={TextField} name='fullName' options={options} onChange={action('changed')} label='Full Name' info='This field is used to enter your full name' placeholder='Enter Name' />;
   }
 });
+
+storiesOf('Dropzone', module)
+  .add('default', () => <Dropzone label='Upload Logo' />);
+
+storiesOf('TextArea', module)
+  .add('default', () => <TextArea />);
 
 storiesOf('Datepicker', module)
   .add('default', () => <Datepicker onChange={action('changed')} />)
@@ -143,6 +151,15 @@ storiesOf('Dropdown', module)
   })
   .add('default with error', () => {
     return <DefaultDropdown onChange={action('changed')} error='Some error message which is critical' label='Full Name' info='Your name right here' />;
+  })
+  .add('redux-form multiselect', () => {
+    let DropdownWrapper = React.createClass({
+      render() {
+        return <Field component={Dropdown} name='fullName' options={options} onChange={action('changed')} label='Full Name' info='This field is used to enter your full name' multi />;
+      }
+    });
+    DropdownWrapper = reduxForm({ form: 'dropdown' })(DropdownWrapper);
+    return <DropdownWrapper />;
   })
   .add('redux-form dropdown', () => {
     let DropdownWrapper = React.createClass({

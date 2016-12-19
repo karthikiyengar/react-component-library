@@ -17,6 +17,7 @@
 .container {
   :global {
     .react-datepicker__input-container {
+      height: height;
       width: 100%;
     }
   }

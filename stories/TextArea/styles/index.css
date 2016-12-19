@@ -4,8 +4,8 @@
   border: 1px solid border-color;
   border-radius: border-radius;
   composes: value from './../../config';
-  height: height;
-  padding: 0 padding;
+  height: calc(height * 2);
+  padding: padding;
 
   &:focus {
     border-color: border-color-focus;

@@ -1,0 +1,16 @@
+@value color-primary, border-radius, padding from './../../config.css';
+
+.container {
+  :global {
+    .dropzone {
+      border: 1px dashed color-primary;
+      border-radius: border-radius;
+      padding: padding;
+      width: 100%;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
