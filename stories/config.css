@@ -5,6 +5,7 @@
 @value color-success: #1CB841;
 @value color-danger: #CA3C3C;
 @value color-gray: #eee;
+@value color-disabled: #f9f9f9;
 @value height: 35px;
 @value padding: 10px;
 @value border-radius: 4px;

@@ -30,6 +30,10 @@
       }
     }
 
+    .Select.is-disabled > .Select-control {
+      background: color-disabled;
+    }
+
     .Select-placeholder,
     .Select-value {
       padding-left: padding;

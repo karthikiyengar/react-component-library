@@ -12,7 +12,8 @@ export default class TextField extends React.Component {
     input: PropTypes.object, // passed in by redux-form
     className: PropTypes.string,
     placeholder: PropTypes.string,
-    isPassword: PropTypes.bool
+    isPassword: PropTypes.bool,
+    disabled: PropTypes.bool
   }
   handleChange(e) {
     const { onChange, input } = this.props;
@@ -30,14 +31,14 @@ export default class TextField extends React.Component {
     if (input) input.onBlur(input.value);
   }
   render() {
-    const { error, value, placeholder, input, className, label, info, meta, isPassword } = this.props;
+    const { error, value, placeholder, input, className, label, info, meta, isPassword, disabled } = this.props;
     const reduxFormError = (meta) => (meta && meta.invalid && meta.touched) ? meta.error : null;
     const currentValue = input ? input.value : value;
     const errorMessage = input ? reduxFormError(meta) : error;
     return (
       <div styleName='container' className={className}>
         { label && <span styleName='label'>{label}</span> }
-        <input type={isPassword ? 'password' : 'text'} placeholder={placeholder} styleName={errorMessage ? 'input-error' : 'input'} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} />
+        <input type={isPassword ? 'password' : 'text'} placeholder={placeholder} styleName={errorMessage ? 'input-error' : 'input'} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} disabled={disabled} />
         { !errorMessage && info && <span styleName='info'>{info}</span> }
         { errorMessage && <span styleName='error'>{errorMessage}</span> }
       </div>
