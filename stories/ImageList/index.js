@@ -1,8 +1,7 @@
 import React, { PropTypes } from 'react';
 import styles from './styles';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 
-@CSSModules(styles)
 class ImageList extends React.Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
@@ -46,4 +45,4 @@ class ImageList extends React.Component {
   }
 }
 
-export default ImageList;
+export default cssModules(styles)(ImageList);

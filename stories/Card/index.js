@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import styles from './styles';
 import cssModules from 'react-css-modules';
 
-@cssModules(styles)
 class Card extends React.Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -20,4 +19,4 @@ class Card extends React.Component {
   }
 }
 
-export default Card;
+export default cssModules(styles)(Card);

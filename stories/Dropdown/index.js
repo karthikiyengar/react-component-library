@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 import Select from 'react-select';
 import '!style!css!react-select/dist/react-select.css';
 import styles from './styles';
 import config from './../config.css';
 
-@CSSModules({...config, ...styles})
 class Dropdown extends React.Component {
   static propTypes = {
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -48,4 +47,4 @@ class Dropdown extends React.Component {
   }
 }
 
-export default Dropdown;
+export default cssModules({...config, ...styles})(Dropdown);

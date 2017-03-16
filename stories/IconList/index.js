@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import styles from './styles';
 import cssModules from 'react-css-modules';
 
-@cssModules(styles)
 class IconList extends React.Component {
   static propTypes = {
     data: PropTypes.arrayOf(PropTypes.shape({
@@ -45,4 +44,4 @@ class IconList extends React.Component {
   }
 }
 
-export default IconList;
+export default cssModules(styles)(IconList);

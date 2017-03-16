@@ -1,10 +1,9 @@
 import React, { PropTypes } from 'react';
 import styles from './styles';
 import config from './../config.css';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 import ReactDropzone from 'react-dropzone';
 
-@CSSModules({...config, ...styles})
 class Dropzone extends React.Component {
   static propTypes = {
     onDrop: PropTypes.func
@@ -37,4 +36,4 @@ class Dropzone extends React.Component {
   }
 }
 
-export default Dropzone;
+export default cssModules({...config, ...styles})(Dropzone);

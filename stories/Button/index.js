@@ -1,11 +1,8 @@
 import React, { PropTypes} from 'react';
 import styles from './styles';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 import cx from 'classnames';
 
-@CSSModules(styles, {
-  allowMultiple: true
-})
 class Button extends React.Component {
   static propTypes = {
     onClick: PropTypes.func,
@@ -30,4 +27,6 @@ class Button extends React.Component {
   }
 }
 
-export default Button;
+export default cssModules(styles, {
+  allowMultiple: true
+})(Button);

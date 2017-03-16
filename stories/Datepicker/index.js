@@ -1,11 +1,10 @@
 import React, { PropTypes } from 'react';
-import CSSModules from 'react-css-modules';
+import cssModules from 'react-css-modules';
 import Picker from 'react-datepicker';
 import '!style!css!react-datepicker/dist/react-datepicker.min.css';
 import styles from './styles';
 import config from './../config.css';
 
-@CSSModules({...config, ...styles})
 class Datepicker extends React.Component {
   static propTypes = {
     error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -48,4 +47,4 @@ class Datepicker extends React.Component {
   }
 }
 
-export default Datepicker;
+export default cssModules({...config, ...styles})(Datepicker);
