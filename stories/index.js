@@ -15,7 +15,6 @@ import { Field, reduxForm, reducer as form } from 'redux-form';
 import { Provider } from 'react-redux';
 import moment from 'moment';
 import './globals.css';
-import './icons.css';
 
 const store = createStore(combineReducers({ form }), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 const chance = new Chance();
