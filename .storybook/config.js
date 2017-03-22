@@ -1,7 +1,19 @@
-import { configure } from '@kadira/storybook';
+import React from 'react'
+import { configure, addDecorator } from '@kadira/storybook'
+import { ThemeProvider } from 'styled-components'
+
+import theme from '../src/themes/default';
+
+const req = require.context('../src', true, /.stories.js$/)
 
 function loadStories() {
-  require('../stories');
+  req.keys().forEach(filename => req(filename))
 }
 
-configure(loadStories, module);
+addDecorator(story => (
+  <ThemeProvider theme={theme}>
+    {story()}
+  </ThemeProvider>
+))
+
+configure(loadStories, module)
