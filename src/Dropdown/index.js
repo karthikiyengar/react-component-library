@@ -2,21 +2,15 @@ import React, { PropTypes } from 'react'
 import Select from 'react-select'
 import styled, { injectGlobal } from 'styled-components'
 import 'react-select/dist/react-select.css'
-import { Label, Info, Error } from '../themes/default'
+import { Label, Info, Error, Wrapper } from '../themes/default'
 
 const StyledSelect = styled(Select)`
-  .Select-error .Select-control {
-    border: 2px solid ${props => props.theme.danger};
-  }
-  .Select-error .Select-menu-outer {
-    border-color: ${props => props.theme.danger};
-  }
   .Select.is-open .Select-control {
     border-radius: 0;
   }
 
   .Select-control {
-    border: 1px solid ${props => props.theme.gray};
+    border: 1px solid ${props => props.error ? props.theme.danger : props.theme.gray};
     border-radius: ${props => props.theme.radius};
     height: ${props => props.theme.height};;
 
@@ -43,7 +37,7 @@ const StyledSelect = styled(Select)`
   .Select-menu-outer {
     border-bottom-left-radius: ${props => props.theme.radius};
     border-bottom-right-radius: ${props => props.theme.radius};;
-    border-color: ${props => props.theme.primary};
+    border-color: ${props => props.error ? props.theme.danger : props.theme.primary};
   }
 
   .Select-placeholder {
@@ -86,14 +80,22 @@ class Dropdown extends React.Component {
     const currentValue = input ? input.value : value
     const errorMessage = input ? reduxFormError(meta) : error
     return (
-      <div>
+      <Wrapper>
         <Label>{label}</Label>
-        <div className={errorMessage ? 'Select-error' : null}>
-          <StyledSelect valueKey="id" clearable={false} searchable={false} {...this.props} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} />
-        </div>
+        <StyledSelect
+          valueKey="id"
+          clearable={false}
+          searchable={false}
+          {...this.props}
+          onChange={this.handleChange.bind(this)}
+          onFocus={this.handleFocus.bind(this)}
+          onBlur={this.handleBlur.bind(this)}
+          value={currentValue}
+          error={!!errorMessage}
+        />
         { !errorMessage && info && <Info>{info}</Info> }
         { errorMessage && typeof errorMessage === 'string' && <Error>{errorMessage}</Error> }
-      </div>
+      </Wrapper>
     )
   }
 }

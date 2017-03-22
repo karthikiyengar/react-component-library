@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import styled from 'styled-components'
-import { Label, Info, Error } from '../themes/default'
+import { Label, Info, Error, Wrapper } from '../themes/default'
 
 const StyledTextField = styled.input`
   border: 1px;
@@ -52,7 +52,7 @@ class TextField extends React.Component {
     const currentValue = input ? input.value : value
     const errorMessage = input ? reduxFormError(meta) : error
     return (
-      <div styleName="container" className={className}>
+      <Wrapper className={className}>
         { label && <Label>{label}</Label> }
         <StyledTextField
           type={isPassword ? 'password' : 'text'}
@@ -66,7 +66,7 @@ class TextField extends React.Component {
         />
         { !errorMessage && info && <Info>{info}</Info> }
         { errorMessage && <Error>{errorMessage}</Error> }
-      </div>
+      </Wrapper>
     )
   }
 }

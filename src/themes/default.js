@@ -5,7 +5,6 @@ injectGlobal`
   *::after,
   *::before {
     box-sizing: border-box;
-    font-family: sans-serif;
   }
 `
 
@@ -39,6 +38,11 @@ export const Error = styled.div`
 export const Info = styled.div`
   font-size: 12px;
   margin-top: 5px;
+`
+export const Wrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 `
 
 export default theme

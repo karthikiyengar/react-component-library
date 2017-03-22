@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 
 const StyledCard = styled.div`
-  background: color-light;
+  background: ${props => props.theme.white};
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .06);
   display: ${props => props.block ? 'block' : 'inline-block'};
   width: ${props => props.block ? '100%' : 'auto'};
@@ -17,7 +17,7 @@ const StyledCard = styled.div`
 
 function Card(props) {
   return (
-    <StyledCard>
+    <StyledCard {...props}>
       { props.children }
     </StyledCard>
   )

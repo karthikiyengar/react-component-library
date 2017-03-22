@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import ReactDatepicker from 'react-datepicker'
 import styled from 'styled-components'
 import 'react-datepicker/dist/react-datepicker.min.css'
-import { Label, Info, Error } from '../themes/default'
+import { Label, Info, Error, Wrapper } from '../themes/default'
 
 const StyledPicker = styled(ReactDatepicker)`
   border: 1px solid ${props => props.theme.gray};
@@ -66,12 +66,12 @@ class Datepicker extends React.Component {
     const currentValue = input ? input.value : value
     const errorMessage = input ? reduxFormError(meta) : error
     return (
-      <div styleName="container" className={className} >
+      <Wrapper className={className} >
         { label && <Label>{label}</Label> }
         <StyledPicker placeholderText={placeholder || 'Select Date'} {...this.props} selected={currentValue} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} styleName={errorMessage ? 'datepicker-error' : 'datepicker'} className={className} />
         { !errorMessage && info && <Info>{info}</Info> }
         { errorMessage && <Error>{errorMessage}</Error> }
-      </div>
+      </Wrapper>
     )
   }
 }
