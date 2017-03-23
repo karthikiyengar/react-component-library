@@ -1,8 +1,11 @@
 import React, { PropTypes } from 'react'
 import ReactDatepicker from 'react-datepicker'
-import styled from 'styled-components'
-import 'react-datepicker/dist/react-datepicker.min.css'
+import styled, { injectGlobal } from 'styled-components'
 import { Label, Info, Error, Wrapper } from '../themes/default'
+import vendorCss from './vendor'
+
+injectGlobal`${vendorCss}`
+
 
 const StyledPicker = styled(ReactDatepicker)`
   border: 1px solid ${props => props.theme.gray};

@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react'
 import Select from 'react-select'
 import styled, { injectGlobal } from 'styled-components'
-import 'react-select/dist/react-select.css'
 import { Label, Info, Error, Wrapper } from '../themes/default'
+import vendorCss from './vendor'
+
+injectGlobal`${vendorCss}`
 
 const StyledSelect = styled(Select)`
   .Select.is-open .Select-control {

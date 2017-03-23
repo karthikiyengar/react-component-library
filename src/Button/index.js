@@ -50,7 +50,7 @@ class Button extends React.Component {
     onClick: PropTypes.func,
     children: PropTypes.node,
     icon: PropTypes.string,
-    nature: PropTypes.oneOf(['submit', 'button']),
+    nature: PropTypes.oneOf(['primary', 'secondary', 'danger', 'success']),
     type: PropTypes.oneOf(['submit', 'button']),
   }
   render() {
