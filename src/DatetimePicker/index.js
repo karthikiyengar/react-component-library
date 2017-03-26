@@ -1,19 +1,38 @@
 import React, { PropTypes } from 'react'
-import ReactDatepicker from 'react-datepicker'
+import ReactDatetime from 'react-datetime'
 import styled, { injectGlobal } from 'styled-components'
 import { Label, Info, Error, Wrapper } from '../themes/default'
 import vendorCss from './vendor'
 
 injectGlobal`${vendorCss}`
 
+const StyledPicker = styled(ReactDatetime)`
+  input {
+    border: 1px solid ${props => props.error ? props.theme.danger : props.theme.gray};
+    border-radius: ${props => props.theme.radius};
+    height: ${props => props.theme.height};
+    padding: ${props => props.theme.padding};
+    width: 100%;
+  }
 
-const StyledPicker = styled(ReactDatepicker)`
-  border: 1px solid ${props => props.theme.gray};
-  border-radius: ${props => props.theme.radius};
-  height: ${props => props.theme.height};
-  padding: ${props => props.theme.padding};
-  width: 100%;
+  .rdtPicker {
+    padding: 0;
+  }
+  
+  table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin-top: 3px;
+  }
 
+  th, td {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  thead {
+    background: ${props => props.theme.lightgray}
+  }
   &:focus {
     border-color: ${props => props.error ? props.theme.danger : props.theme.primary};
     outline: none;
@@ -21,21 +40,6 @@ const StyledPicker = styled(ReactDatepicker)`
 
   &:hover {
     cursor: pointer;
-  }
-  .react-datepicker__input-container {
-    height: height;
-    width: 100%;
-  }
-  .react-datepicker__current-month {
-    font-weight: inherit;
-  }
-
-  .react-datepicker__header {
-    background: color-default;
-  }
-
-  .react-datepicker__triangle {
-    border-bottom-color: color-default !important;
   }
 `
 
@@ -71,7 +75,17 @@ class Datepicker extends React.Component {
     return (
       <Wrapper className={className} >
         { label && <Label>{label}</Label> }
-        <StyledPicker placeholderText={placeholder || 'Select Date'} {...this.props} selected={currentValue} onChange={this.handleChange.bind(this)} onFocus={this.handleFocus.bind(this)} onBlur={this.handleBlur.bind(this)} value={currentValue} styleName={errorMessage ? 'datepicker-error' : 'datepicker'} className={className} />
+        <StyledPicker 
+          inputProps={{
+            placeholder: placeholder || 'Select Date'
+          }} 
+          {...this.props} 
+          selected={currentValue} 
+          onChange={this.handleChange.bind(this)} 
+          onFocus={this.handleFocus.bind(this)} 
+          onBlur={this.handleBlur.bind(this)} 
+          value={currentValue} 
+          error={!!errorMessage} />
         { !errorMessage && info && <Info>{info}</Info> }
         { errorMessage && <Error>{errorMessage}</Error> }
       </Wrapper>

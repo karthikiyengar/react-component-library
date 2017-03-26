@@ -3,7 +3,7 @@ import moment from 'moment'
 import { storiesOf, action } from '@kadira/storybook'
 import Datepicker from './index'
 
-storiesOf('Datepicker', module)
+storiesOf('DatetimePicker', module)
   .add('default', () => <Datepicker onChange={action('changed')} />)
   .add('with selected', () => <Datepicker value={moment()} onChange={action('changed')} />)
   .add('with redux form selected', () => <Datepicker input={{ value: moment(), onChange: f => f, onFocus: f => f, onBlur: f => f }} />)
